@@ -3,6 +3,8 @@ import 'package:shop_app/components/product_item.component.dart';
 import 'package:shop_app/models/product.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
+  static const String routeName = '/products-overview';
+
   final List<Product> products = [
     Product(
       id: 'p1',
@@ -45,7 +47,7 @@ class ProductsOverviewScreen extends StatelessWidget {
         title: Text('MyShop'),
       ),
       body: GridView.builder(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(15),
         itemCount: products.length,
         itemBuilder: (context, index) => ProductItem(
           id: products[index].id,
@@ -55,8 +57,8 @@ class ProductsOverviewScreen extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 4 / 5,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
         ),
       ),
     );
