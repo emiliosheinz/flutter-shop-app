@@ -4,6 +4,7 @@ import 'package:shop_app/components/badge.component.dart';
 import 'package:shop_app/components/products_grid.component.dart';
 import 'package:shop_app/providers/cart.provider.dart';
 import 'package:shop_app/providers/products.provider.dart';
+import 'package:shop_app/screens/cart.screen.dart';
 
 enum FilterOptions { Favorites, All }
 
@@ -32,6 +33,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               icon: Icon(
                 Icons.shopping_cart,
               ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
             ),
           ),
           PopupMenuButton(
