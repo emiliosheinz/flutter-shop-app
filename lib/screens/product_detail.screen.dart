@@ -11,7 +11,7 @@ class ProductDetailScreen extends StatelessWidget {
         ModalRoute.of(context).settings.arguments as Map<String, String>;
     final String productId = arguments['id'];
 
-    final product = Provider.of<ProductsProvider>(
+    final product = Provider.of<Products>(
       context,
       listen: false,
     ).findById(productId);
