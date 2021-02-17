@@ -53,7 +53,8 @@ class MainDrawer extends StatelessWidget {
             title: 'Orders',
             icon: Icons.shopping_bag,
             onTap: () {
-              Navigator.of(context).pushNamed(OrdersScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(OrdersScreen.routeName);
             },
           )
         ],

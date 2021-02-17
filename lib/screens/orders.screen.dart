@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/components/main_drawer.component.dart';
 import 'package:shop_app/components/order_item.component.dart';
 import 'package:shop_app/providers/orders.provider.dart' show Orders;
 
@@ -11,6 +12,7 @@ class OrdersScreen extends StatelessWidget {
     final ordersProvider = Provider.of<Orders>(context);
 
     return Scaffold(
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: Text('Your Orders'),
       ),
