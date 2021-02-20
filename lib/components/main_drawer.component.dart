@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/orders.screen.dart';
 import 'package:shop_app/screens/products_overview.screen.dart';
+import 'package:shop_app/screens/user_products.scree.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile({String title, IconData icon, Function onTap}) {
@@ -55,6 +56,14 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(OrdersScreen.routeName);
+            },
+          ),
+          buildListTile(
+            title: 'Manage Products',
+            icon: Icons.edit,
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(UserProductsScreen.routeName);
             },
           )
         ],
