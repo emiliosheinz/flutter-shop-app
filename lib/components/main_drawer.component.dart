@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/orders.screen.dart';
 import 'package:shop_app/screens/products_overview.screen.dart';
-import 'package:shop_app/screens/user_products.scree.dart';
+import 'package:shop_app/screens/user_products.screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile({String title, IconData icon, Function onTap}) {

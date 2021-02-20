@@ -7,7 +7,7 @@ import 'package:shop_app/screens/cart.screen.dart';
 import 'package:shop_app/screens/orders.screen.dart';
 import 'package:shop_app/screens/product_detail.screen.dart';
 import 'package:shop_app/screens/products_overview.screen.dart';
-import 'package:shop_app/screens/user_products.scree.dart';
+import 'package:shop_app/screens/user_products.screen.dart';
 
 void main() {
   runApp(MyApp());
