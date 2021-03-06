@@ -89,7 +89,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   _priceFocusNode.requestFocus();
                 },
                 validator: (value) {
-                  return value.isEmpty ? 'Title is required' : null;
+                  return value.isEmpty ? 'Please, enter a title.' : null;
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -119,6 +119,21 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     imageUrl: _editedProduct.imageUrl,
                   );
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please, enter a price.';
+                  }
+
+                  if (double.tryParse(value) == null) {
+                    return 'Please, enter a valid price.';
+                  }
+
+                  if (double.parse(value) <= 0) {
+                    return 'Please, enter a price greater than zero.';
+                  }
+
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Description'),
@@ -133,6 +148,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     description: value,
                     imageUrl: _editedProduct.imageUrl,
                   );
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please, enter a description.';
+                  }
+
+                  if (value.length <= 10) {
+                    return 'Please, enter a description greater than 10 characters.';
+                  }
+
+                  return null;
                 },
               ),
               Row(
@@ -178,6 +204,24 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           description: _editedProduct.description,
                           imageUrl: value,
                         );
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please, enter a image url.';
+                        }
+
+                        if (!value.startsWith('http') &&
+                            !value.startsWith('https')) {
+                          return 'Please, enter a valid url.';
+                        }
+
+                        if (!value.endsWith('.png') &&
+                            !value.endsWith('.jpg') &&
+                            !value.endsWith('.jpeg')) {
+                          return 'Please, enter a valid image url.';
+                        }
+
+                        return null;
                       },
                     ),
                   ),
