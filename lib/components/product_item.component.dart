@@ -5,10 +5,23 @@ import 'package:shop_app/providers/product.provider.dart';
 import 'package:shop_app/screens/product_detail.screen.dart';
 
 class ProductItem extends StatelessWidget {
+  Future<void> _handleFavoritePress(
+      Product product, ScaffoldState scaffold) async {
+    try {
+      await product.toggleIsFavorite();
+    } catch (_) {
+      scaffold.hideCurrentSnackBar();
+      scaffold.showSnackBar(
+        SnackBar(content: Text('Updating favorite state failed!')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
+    final scaffold = Scaffold.of(context);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
@@ -33,7 +46,7 @@ class ProductItem extends StatelessWidget {
               product.isFavorite ? Icons.favorite : Icons.favorite_border,
               color: product.isFavorite ? Colors.red : Colors.white,
             ),
-            onPressed: product.toggleIsFavorite,
+            onPressed: () => _handleFavoritePress(product, scaffold),
           ),
           title: Text(
             product.title,
