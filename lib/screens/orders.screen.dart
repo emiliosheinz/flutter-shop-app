@@ -4,7 +4,26 @@ import 'package:shop_app/components/main_drawer.component.dart';
 import 'package:shop_app/components/order_item.component.dart';
 import 'package:shop_app/providers/orders.provider.dart' show Orders;
 
-class OrdersScreen extends StatelessWidget {
+class OrdersScreen extends StatefulWidget {
+  static const routeName = '/orders';
+
+  @override
+  _OrdersScreenState createState() => _OrdersScreenState();
+}
+
+class _OrdersScreenState extends State<OrdersScreen> {
+  Future _orderFuture;
+
+  Future _obtainOrdersFuture() {
+    return Provider.of<Orders>(context, listen: false).fetchAndSetOrders()
+  }
+
+  @override
+  void initState() { 
+    _orderFuture = _obtainOrdersFuture();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +35,7 @@ class OrdersScreen extends StatelessWidget {
         onRefresh: () =>
             Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
         child: FutureBuilder(
-          future:
-              Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
+          future: _orderFuture,
           builder: (context, dataSnapshot) {
             if (dataSnapshot.connectionState == ConnectionState.waiting) {
               return Center(
