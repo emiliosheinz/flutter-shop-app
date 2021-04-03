@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.provider.dart';
 import 'package:shop_app/providers/orders.provider.dart';
 import 'package:shop_app/providers/products.provider.dart';
+import 'package:shop_app/screens/auth.screen.dart';
 import 'package:shop_app/screens/cart.screen.dart';
 import 'package:shop_app/screens/edit_product.screen.dart';
 import 'package:shop_app/screens/orders.screen.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lato',
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: ProductsOverviewScreen.routeName,
+        initialRoute: AuthScreen.routeName,
         routes: {
           ProductsOverviewScreen.routeName: (context) =>
               ProductsOverviewScreen(),
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
           CartScreen.routeName: (context) => CartScreen(),
           OrdersScreen.routeName: (context) => OrdersScreen(),
           UserProductsScreen.routeName: (context) => UserProductsScreen(),
-          EditProductScreen.routeName: (context) => EditProductScreen()
+          EditProductScreen.routeName: (context) => EditProductScreen(),
+          AuthScreen.routeName: (context) => AuthScreen(),
         },
       ),
     );

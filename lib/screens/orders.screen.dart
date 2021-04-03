@@ -15,11 +15,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Future _orderFuture;
 
   Future _obtainOrdersFuture() {
-    return Provider.of<Orders>(context, listen: false).fetchAndSetOrders()
+    return Provider.of<Orders>(context, listen: false).fetchAndSetOrders();
   }
 
   @override
-  void initState() { 
+  void initState() {
     _orderFuture = _obtainOrdersFuture();
     super.initState();
   }
