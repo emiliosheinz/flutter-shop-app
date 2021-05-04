@@ -9,6 +9,22 @@ class Auth with ChangeNotifier {
   DateTime _expiryDate;
   String _userId;
 
+  bool get isAuthenticated {
+    return token != null;
+  }
+
+  String get token {
+    final hasToken = _token != null;
+    final hasExpiryDate = _expiryDate != null;
+    final isExpired = _expiryDate?.isAfter(DateTime.now());
+
+    if (hasToken && hasExpiryDate && isExpired) {
+      return _token;
+    }
+
+    return null;
+  }
+
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
     final url =
@@ -25,10 +41,19 @@ class Auth with ChangeNotifier {
       );
 
       final responseData = json.decode(response.body);
+
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
+      } else {
+        final expiresInSeconds = Duration(
+          seconds: int.parse(responseData['expiresIn']),
+        );
+
+        _token = responseData['idToken'];
+        _userId = responseData['localId'];
+        _expiryDate = DateTime.now().add(expiresInSeconds);
+        notifyListeners();
       }
-      print(json.decode(response.body));
     } catch (error) {
       throw error;
     }

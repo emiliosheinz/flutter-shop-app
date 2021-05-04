@@ -26,25 +26,29 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Cart()),
         ChangeNotifierProvider(create: (_) => Orders()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrangeAccent,
-          fontFamily: 'Lato',
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: Consumer<Auth>(
+        builder: (context, authData, _) => MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrangeAccent,
+            fontFamily: 'Lato',
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: authData.isAuthenticated
+              ? ProductsOverviewScreen()
+              : AuthScreen(),
+          routes: {
+            ProductsOverviewScreen.routeName: (context) =>
+                ProductsOverviewScreen(),
+            ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+            CartScreen.routeName: (context) => CartScreen(),
+            OrdersScreen.routeName: (context) => OrdersScreen(),
+            UserProductsScreen.routeName: (context) => UserProductsScreen(),
+            EditProductScreen.routeName: (context) => EditProductScreen(),
+            AuthScreen.routeName: (context) => AuthScreen(),
+          },
         ),
-        initialRoute: AuthScreen.routeName,
-        routes: {
-          ProductsOverviewScreen.routeName: (context) =>
-              ProductsOverviewScreen(),
-          ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
-          CartScreen.routeName: (context) => CartScreen(),
-          OrdersScreen.routeName: (context) => OrdersScreen(),
-          UserProductsScreen.routeName: (context) => UserProductsScreen(),
-          EditProductScreen.routeName: (context) => EditProductScreen(),
-          AuthScreen.routeName: (context) => AuthScreen(),
-        },
       ),
     );
   }
