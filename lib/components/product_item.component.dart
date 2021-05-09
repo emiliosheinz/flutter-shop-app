@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/providers/auth.provider.dart';
 import 'package:shop_app/providers/cart.provider.dart';
 import 'package:shop_app/providers/product.provider.dart';
 import 'package:shop_app/screens/product_detail.screen.dart';
 
 class ProductItem extends StatelessWidget {
   Future<void> _handleFavoritePress(
-      Product product, ScaffoldState scaffold) async {
+      Product product, ScaffoldState scaffold, authToken) async {
     try {
-      await product.toggleIsFavorite();
+      await product.toggleIsFavorite(authToken);
     } catch (_) {
       scaffold.hideCurrentSnackBar();
       scaffold.showSnackBar(
@@ -22,6 +23,7 @@ class ProductItem extends StatelessWidget {
     final product = Provider.of<Product>(context);
     final cart = Provider.of<Cart>(context, listen: false);
     final scaffold = Scaffold.of(context);
+    final authData = Provider.of<Auth>(context, listen: false);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
@@ -46,7 +48,11 @@ class ProductItem extends StatelessWidget {
               product.isFavorite ? Icons.favorite : Icons.favorite_border,
               color: product.isFavorite ? Colors.red : Colors.white,
             ),
-            onPressed: () => _handleFavoritePress(product, scaffold),
+            onPressed: () => _handleFavoritePress(
+              product,
+              scaffold,
+              authData.token,
+            ),
           ),
           title: Text(
             product.title,
