@@ -7,9 +7,13 @@ import 'package:shop_app/screens/product_detail.screen.dart';
 
 class ProductItem extends StatelessWidget {
   Future<void> _handleFavoritePress(
-      Product product, ScaffoldState scaffold, authToken) async {
+    Product product,
+    ScaffoldState scaffold,
+    String authToken,
+    String userId,
+  ) async {
     try {
-      await product.toggleIsFavorite(authToken);
+      await product.toggleIsFavorite(authToken, userId);
     } catch (_) {
       scaffold.hideCurrentSnackBar();
       scaffold.showSnackBar(
@@ -52,6 +56,7 @@ class ProductItem extends StatelessWidget {
               product,
               scaffold,
               authData.token,
+              authData.userId,
             ),
           ),
           title: Text(

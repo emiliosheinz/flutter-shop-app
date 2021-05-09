@@ -13,6 +13,10 @@ class Auth with ChangeNotifier {
     return token != null;
   }
 
+  String get userId {
+    return _userId;
+  }
+
   String get token {
     final hasToken = _token != null;
     final hasExpiryDate = _expiryDate != null;
