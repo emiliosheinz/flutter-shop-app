@@ -26,7 +26,10 @@ class ProductDetailScreen extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height / 2,
               width: double.infinity,
-              child: Image.network(product.imageUrl, fit: BoxFit.cover),
+              child: Hero(
+                tag: product.id,
+                child: Image.network(product.imageUrl, fit: BoxFit.cover),
+              ),
             ),
             SizedBox(height: 10),
             Text(
