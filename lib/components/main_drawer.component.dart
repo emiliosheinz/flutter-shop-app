@@ -73,6 +73,7 @@ class MainDrawer extends StatelessWidget {
             icon: Icons.exit_to_app,
             onTap: () {
               Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed("/");
               Provider.of<Auth>(context, listen: false).logout();
             },
           )
