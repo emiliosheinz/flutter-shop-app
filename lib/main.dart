@@ -49,6 +49,10 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.deepOrangeAccent,
             fontFamily: 'Lato',
             visualDensity: VisualDensity.adaptivePlatformDensity,
+            // pageTransitionsTheme: PageTransitionsTheme(builders: {
+            //   TargetPlatform.iOS: CustomPageTransitionBuilder(),
+            //   TargetPlatform.android: CustomPageTransitionBuilder(),
+            // }),
           ),
           home: authData.isAuthenticated
               ? ProductsOverviewScreen()
